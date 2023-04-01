@@ -1,4 +1,4 @@
-{ pkgs, config, lib, ... }:
+{ pkgs, config, lib, pre-commit-hooks, ... }:
 
 let
   cfg = config.languages.terraform;
@@ -21,5 +21,9 @@ in
       terraform-ls
       tfsec
     ];
+
+    pre-commit.tools.terraform-fmt = lib.mkForce
+      pkgs.callPackage "${pre-commit-hooks}/terraform-fmt"
+      { terraform = cfg.package; };
   };
 }

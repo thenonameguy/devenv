@@ -44,4 +44,17 @@
   languages.zig.enable = true;
 
   # If you're missing a language, please contribute it by following examples of other languages <3
+
+  # enabling all pre-commit hooks that depend on the given language module settings
+  pre-commit.hooks = {
+    govet.enable = true;
+    gofmt.enable = true;
+    gotest.enable = true;
+    fourmolu.enable = true;
+    ocp-indent.enable = true;
+    purty.enable = true;
+    terraform-format.enable = true;
+    latexindent.enable = true;
+    chktex.enable = true;
+  };
 }

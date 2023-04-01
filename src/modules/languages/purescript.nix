@@ -1,4 +1,4 @@
-{ pkgs, config, lib, ... }:
+{ pkgs, config, lib, pre-commit-hooks, ... }:
 
 let
   cfg = config.languages.purescript;
@@ -31,5 +31,7 @@ in
       pkgs.purescript-psa
       (supportAarch64Darwin pkgs.psc-package)
     ];
+
+    pre-commit.tools.purty = lib.mkForce pkgs.callPackage "${pre-commit-hooks}/purty" { purty = cfg.package; };
   };
 }

@@ -40,5 +40,6 @@ in
       zlib
       hpack
     ];
+    pre-commit.tools.fourmolu = lib.mkForce cfg.package.packages.fourmolu;
   };
 }

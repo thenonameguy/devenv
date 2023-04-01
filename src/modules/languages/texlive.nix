@@ -5,6 +5,9 @@ let
   base = cfg.base;
   packages = lib.genAttrs cfg.packages (name: base.${name} or (throw "No such texlive package ${name}"));
   package = base.combine packages;
+  tex = base.combine {
+    inherit (base) latexindent chktex scheme-basic;
+  };
 in
 {
   options.languages.texlive = {
@@ -22,5 +25,7 @@ in
   };
   config = lib.mkIf cfg.enable {
     packages = [ package ];
+    pre-commit.tools.latexindent = lib.mkForce tex;
+    pre-commit.tools.chktex = lib.mkForce tex;
   };
 }

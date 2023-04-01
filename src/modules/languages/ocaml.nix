@@ -26,5 +26,7 @@ in
       cfg.packages.odoc
       pkgs.ocamlformat
     ];
+
+    pre-commit.tools.ocp-indent = lib.mkForce cfg.packages.ocp-indent;
   };
 }

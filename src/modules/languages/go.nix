@@ -43,5 +43,7 @@ in
     enterShell = ''
       export PATH=$GOPATH/bin:$PATH
     '';
+
+    pre-commit.tools.go = lib.mkForce cfg.package;
   };
 }
